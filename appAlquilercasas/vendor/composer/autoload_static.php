@@ -511,7 +511,6 @@ class ComposerStaticInitc2faeda6505eab2f54df7fe1ae3ecfde
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\DetalleController' => __DIR__ . '/../..' . '/app/Http/Controllers/DetalleController.php',
         'App\\Http\\Controllers\\HistoricoController' => __DIR__ . '/../..' . '/app/Http/Controllers/HistoricoController.php',
         'App\\Http\\Controllers\\ProductoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductoController.php',
         'App\\Http\\Controllers\\ReservaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReservaController.php',

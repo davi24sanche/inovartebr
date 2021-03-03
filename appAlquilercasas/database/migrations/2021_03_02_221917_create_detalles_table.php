@@ -18,7 +18,7 @@ class CreateDetallesTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('state');
-            $table->decimal('price', 15, 2);
+            $table->decimal('price');
             $table->unsignedInteger('tipo_id');
             $table->timestamps();
             $table->foreign('tipo_id')->references('id')->on('tipos');
