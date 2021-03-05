@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\TipoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +16,33 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//http://127.0.0.1:8000/api/p1/producto
+Route::group(['prefix' => 'p1'],function(){
+    Route::group(['prefix' => 'producto'], function (){
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+       Route::get('',[ProductoController::class,'index']);
+
+        //Ruta de tipo
+        Route::group([
+            'prefix' => 'tipo'
+        ], function ($router) {
+            Route::get('', [TipoController::class, 'index']);
+        });
+
+        //Ruta de Reservas
+        Route::group([
+            'prefix' => 'reserva'
+        ], function ($router) {
+            Route::get('', [ReservaController::class, 'index']);
+        });
+
+        //Ruta de Rol
+        Route::group([
+            'prefix' => 'rol'
+        ], function ($router) {
+            Route::get('', [RolController::class, 'index']);
+        });
+
+
+    });
 });

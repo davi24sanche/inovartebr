@@ -13,7 +13,7 @@ class detalleReserva extends Migration
      */
     public function up()
     {
-        Schema:: create('detalle_reserva', function (Blueprint $table){
+        Schema::create('detalle_reserva', function (Blueprint $table){
             $table->increments('id');
             $table->unsignedInteger('reserva_id');
             $table->unsignedInteger('detalle_id');
@@ -30,9 +30,10 @@ class detalleReserva extends Migration
      */
     public function down()
     {
-        //
+
         Schema::table('detalle_reserva', function (Blueprint $table) {
             $table->dropForeign('detalle_reserva_reserva_id_foreign');
+            
             $table->dropForeign('detalle_reserva_detalle_id_foreign');
         });
         Schema::dropIfExists('detalle_reserva');

@@ -15,7 +15,15 @@ class ReservaController extends Controller
      */
     public function index()
     {
-        //
+        //Listar Reserva
+        try {
+            //Listar los productos
+            $reservas = Reserva::all();
+            $response = $reservas;
+            return response()->json($response, 200);
+        } catch (Exception $ex) {
+            return response()->json($ex->getMessage(), 422);
+        }
     }
 
     /**

@@ -17,20 +17,20 @@ class CreateReservasTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->decimal('CreationDate', 15, 2);
-            $table->date('startDate');
-            $table->date('finalDate');
-            $table->string('reservecol');
-            $table->integer('numPersons');
+            $table->date('CreationDate');
+            $table->date('startDate')->nullable();
+            $table->date('finalDate')->nullable();
+            $table->string('reservecol')->nullable();
+            $table->integer('numPersons')->nullable();
             $table->string('state');
-            $table->decimal('adjustment', 15, 2);
-            $table->decimal('subTotal', 15, 2);
-            $table->decimal('priceServices', 15, 2);
-            $table->decimal('tax', 15, 2);
-            $table->decimal('total', 15, 2);
-            $table->unsignedInteger('usuario_id');
+            $table->decimal('adjustment', 15, 2)->nullable();
+            $table->decimal('subTotal', 15, 2)->nullable();
+            $table->decimal('priceServices', 15, 2)->nullable();
+            $table->decimal('tax', 15, 2)->nullable();
+            $table->decimal('total', 15, 2)->nullable();
+            $table->unsignedInteger('user_id');
             $table->timestamps();
-            $table->foreign('usuario_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -42,7 +42,7 @@ class CreateReservasTable extends Migration
     public function down()
     {
         Schema::table('reservas', function (Blueprint $table) {
-            $table->dropForeign('reservas_usuario_id_foreign');
+            $table->dropForeign('reservas_user_id_foreign');
         });
         Schema::dropIfExists('reservas');
     }

@@ -35,6 +35,7 @@ class CreateDetallesTable extends Migration
         Schema::table('detalles', function (Blueprint $table) {
             $table->dropForeign('detalles_tipo_id_foreign');
         });
+
         Schema::dropIfExists('detalles');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -15,7 +16,14 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            //Listar los productos
+            $productos = Producto::all();
+            $response = $productos;
+            return response()->json($response, 200);
+        } catch (Exception $ex) {
+            return response()->json($ex->getMessage(), 422);
+        }
     }
 
     /**

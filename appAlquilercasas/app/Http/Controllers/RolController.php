@@ -15,7 +15,14 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $roles = Rol::orderBy('name', 'desc')->get();
+            $response = $roles;
+
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 422);
+        }
     }
 
     /**

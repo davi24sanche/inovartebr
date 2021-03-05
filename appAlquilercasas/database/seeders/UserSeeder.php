@@ -13,33 +13,33 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //usuario1
+        //1
         $objUsuario = \App\Models\User::create([
         'name'=>'admin1',
         'email' =>'admin1@gmail.com',
-        'password' => bcrypt('123456'),
+        'password' => ('123456'),
          'state' => 'Activo',
          'rol_id' => 1
 
         ]);
         $objUsuario->save();
 
-        //Usuario2
+        //2
         $objUsuario = \App\Models\User::create([
             'name' => 'vendedor1',
             'email' => 'vendedor1@gmail.com',
-            'password' => bcrypt('123456'),
+            'password' => ('123456'),
             'state' => 'Activo',
             'rol_id' => 3
 
         ]);
         $objUsuario->save();
 
-        //Usuario3
+        //3
         $objUsuario = \App\Models\User::create([
             'name' => 'cliente1',
             'email' => 'cliente1@gmail.com',
-            'password' => bcrypt('123456'),
+            'password' => ('123456'),
             'state' => 'Activo',
             'rol_id' => 2
 
