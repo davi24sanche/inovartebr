@@ -18,9 +18,7 @@ class ProductoController extends Controller
     {
         try {
             //Listar los productos
-            $productos = Producto::all();
-            $response = $productos;
-            return response()->json($response, 200);
+            return response()->json(Producto::orderBy('price')->get(), 200);
         } catch (Exception $ex) {
             return response()->json($ex->getMessage(), 422);
         }
@@ -53,9 +51,16 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
-        //
+        try {
+            //Obtener un producto
+            $producto = Producto::find($id);
+            $response = $producto;
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 422);
+        }
     }
 
     /**

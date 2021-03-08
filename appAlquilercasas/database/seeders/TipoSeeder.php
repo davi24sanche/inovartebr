@@ -15,8 +15,8 @@ class TipoSeeder extends Seeder
     {
         //Categoria1
         $tipo = new \App\Models\Tipo();
-        $tipo->name='Mascotas';
-        $tipo->description='Se aceptan Mascotas de cualquier tamaño';
+        $tipo->name = 'Mascotas';
+        $tipo->description = 'Se aceptan Mascotas de cualquier tamaño';
         $tipo->save();
 
         //Categoria2
@@ -37,6 +37,6 @@ class TipoSeeder extends Seeder
         $tipo->description = 'Cada casa cuenta con camaras de vigilancia para mayor seguridad de las personas';
         $tipo->save();
 
-       
+
     }
 }

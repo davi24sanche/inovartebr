@@ -17,12 +17,12 @@ class ReservaController extends Controller
     {
         //Listar Reserva
         try {
-            //Listar los productos
+            //Listar las reservas
             $reservas = Reserva::all();
             $response = $reservas;
             return response()->json($response, 200);
-        } catch (Exception $ex) {
-            return response()->json($ex->getMessage(), 422);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 422);
         }
     }
 

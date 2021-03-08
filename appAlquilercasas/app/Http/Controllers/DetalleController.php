@@ -15,7 +15,12 @@ class DetalleController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            //Listar los productos
+            return response()->json(Detalle::orderBy('price')->get(), 200);
+        } catch (Exception $ex) {
+            return response()->json($ex->getMessage(), 422);
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\TipoController;
@@ -19,10 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 //http://127.0.0.1:8000/api/p1/producto
 Route::group(['prefix' => 'p1'], function () {
+
     Route::group(['prefix' => 'producto'], function () {
-
-        Route::get('', [ProductoController::class, 'index']);
-
         //Ruta de tipo
         Route::group([
             'prefix' => 'tipo'
@@ -43,5 +42,16 @@ Route::group(['prefix' => 'p1'], function () {
         ], function ($router) {
             Route::get('', [RolController::class, 'index']);
         });
+
+        //Ruta de Detalle
+        Route::group([
+            'prefix' => 'detalle'
+        ], function ($router) {
+            Route::get('', [DetalleController::class, 'index']);
+        });
+
+
+        Route::get('', [ProductoController::class, 'index']);
+        Route::get('/{id}', [ProductoController::class, 'show']);
     });
 });

@@ -42,7 +42,14 @@ class DetalleSeeder extends Seeder
         $detalle->tipo_id = 4;
         $detalle->save();
 
-
+        //detalle4
+        $detalle = new \App\Models\Detalle();
+        $detalle->name = 'detalle3';
+        $detalle->description = 'Alquila casa por un periodo de un mes se cancela con antelación';
+        $detalle->state = 'Activo';
+        $detalle->price = 150.000;
+        $detalle->tipo_id = 4;
+        $detalle->save();
 
     }
 }
