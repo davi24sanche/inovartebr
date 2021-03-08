@@ -15,7 +15,15 @@ class TipoController extends Controller
      */
     public function index()
     {
-        //
+        try {
+
+            $tipo = Tipo::all();
+            $response = $tipo;
+
+            return response()->json($response, 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 422);
+        }
     }
 
     /**

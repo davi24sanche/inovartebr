@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\TipoController;
+use App\Http\Controllers\RolController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //http://127.0.0.1:8000/api/p1/producto
-Route::group(['prefix' => 'p1'],function(){
-    Route::group(['prefix' => 'producto'], function (){
+Route::group(['prefix' => 'p1'], function () {
+    Route::group(['prefix' => 'producto'], function () {
 
-       Route::get('',[ProductoController::class,'index']);
+        Route::get('', [ProductoController::class, 'index']);
 
         //Ruta de tipo
         Route::group([
@@ -42,7 +43,5 @@ Route::group(['prefix' => 'p1'],function(){
         ], function ($router) {
             Route::get('', [RolController::class, 'index']);
         });
-
-
     });
 });
