@@ -1,31 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GenericService } from 'src/app/share/generic.service';
 
 @Component({
-  selector: 'app-detalle',
-  templateUrl: './detalle.component.html',
-  styleUrls: ['./detalle.component.css'],
+  selector: 'app-producto-show',
+  templateUrl: './producto-show.component.html',
+  styleUrls: ['./producto-show.component.css'],
 })
-export class DetalleComponent implements OnInit {
+export class ProductoShowComponent implements OnInit {
   datos: any;
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private gService: GenericService
+    private gService: GenericService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.listaDetalles();
+    //Obtener el id del producto
+    let id = +this.route.snapshot.paramMap.get('id');
+    //Obtener el producto
+    this.obtenerProducto(id);
   }
-  listaDetalles() {
+  obtenerProducto(id: any) {
     this.gService
-      .list('producto/detalle')
+      .get('producto', id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
+        // console.log(data);
         this.datos = data;
       });
   }

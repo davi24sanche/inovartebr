@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="jumbotron">
+    <div *ngIf="datos?.id">
+      <h1>{{ datos.name }}</h1>
+      <p>{{ datos.description }}</p>
+
+      <br />
+      <h2>Precio: ${{ datos.price }}</h2>
+      <h2>Estado: {{ datos.state }}</h2>
+      <br />
+      <a
+        routerLink="/casas/reserva"
+        routerLinkActive="active"
+        class="btn btn-primary btn-lg"
+      >
+        Volver
+      </a>
+    </div>
+  </div>
+</div>

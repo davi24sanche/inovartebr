@@ -1,1 +1,81 @@
-<p>reserva works!</p>
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+    Reservas
+  </h3>
+  <div class="card-body">
+    <div id="table">
+      <table
+        class="table table-bordered table-responsive-md table-striped text-center"
+      >
+        <thead>
+          <tr>
+            <th class="text-center">Reserva</th>
+            <th class="text-center">Nombre</th>
+            <th class="text-center">Descripción</th>
+            <th class="text-center">Fecha Creacion</th>
+            <th class="text-center">Fecha Inicio</th>
+            <th class="text-center">Fecha Fin</th>
+            <th class="text-center">Personas</th>
+            <th class="text-center">Ajuste</th>
+            <th class="text-center">Subtotal</th>
+            <th class="text-center">Servicios</th>
+            <th class="text-center">Impuesto</th>
+            <th class="text-center">Precio</th>
+            <th class="text-center">Estado</th>
+            <th class="text-center">Ver Producto</th>
+
+
+            <th class="text-center">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of datos">
+            <td class="pt-3-half" contenteditable="true">{{ item.id }}</td>
+            <td class="pt-3-half" contenteditable="true">{{ item.name }}</td>
+            <td class="pt-3-half" contenteditable="true">
+              {{ item.description }}
+            </td>
+            <td class="pt-3-half" contenteditable="true">
+              {{ item.CreationDate }}
+            </td>
+            <td class="pt-3-half" contenteditable="true">
+              {{ item.startDate }}
+            </td>
+            <td class="pt-3-half" contenteditable="true">
+              {{ item.finalDate }}
+            </td>
+            <td class="pt-3-half" contenteditable="true">
+              {{ item.numPersons }}
+            </td>
+            <td class="pt-3-half" contenteditable="true">
+              ${{ item.adjustment }}
+            </td>
+            <td class="pt-3-half" contenteditable="true">
+              ${{ item.subTotal }}
+            </td>
+            <td class="pt-3-half" contenteditable="true">
+              ${{ item.priceServices }}
+            </td>
+            <td class="pt-3-half" contenteditable="true">${{ item.tax }}</td>
+            <td class="pt-3-half" contenteditable="true">${{ item.total }}</td>
+            <td class="pt-3-half" contenteditable="true">{{ item.state }}</td>
+
+            <td class="pt-3-half">
+              <span class=""><a class="btn btn-primary btn-lg" role="button"  routerLink="/casas/producto/{{item.id}}" routerLinkActive="active" > Click Aqui</a> </span>
+            </td>
+            <td>
+              <span class="table-remove">
+                <button
+                  type="button"
+                  class="btn btn-danger btn-rounded btn-sm my-0"
+                >
+                  Eliminar
+                </button>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
