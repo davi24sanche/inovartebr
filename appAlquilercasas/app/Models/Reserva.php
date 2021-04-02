@@ -26,7 +26,7 @@ class Reserva extends Model
      */
     public function productos()
     {
-        return $this->belongsToMany('App\Models\Producto')->withTimestamps() ;
+        return $this->belongsToMany('App\Models\Producto','detalle_reserva','reserva_id','producto_id')->withPivot('precio')->withTimestamps() ;
     }
 
     /**

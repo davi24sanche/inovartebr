@@ -15,10 +15,13 @@ class CreateProductosTable extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name',100);
             $table->string('description');
             $table->decimal('price', 15,2);
             $table->string('state');
+            //Revisar con la DB campo Imagen
+            $table->string('naameImage')->nullable();
+            $table->string('pathImage')->nullable();
             $table->timestamps();
         });
     }

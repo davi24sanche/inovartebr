@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 */
 //http://127.0.0.1:8000/api/p1/producto
 Route::group(['prefix' => 'p1'], function () {
-
     Route::group(['prefix' => 'producto'], function () {
         //Ruta de tipo
         Route::group([
@@ -53,5 +52,18 @@ Route::group(['prefix' => 'p1'], function () {
 
         Route::get('', [ProductoController::class, 'index']);
         Route::get('/{id}', [ProductoController::class, 'show']);
-    });
+
+        //Productos
+        Route::post('', [ProductoController::class, 'store']);
+        Route::patch(
+        '/{id}',
+        [
+            ProductoController::class,
+            'update'
+        ]
+        );
+
+
+});
+
 });

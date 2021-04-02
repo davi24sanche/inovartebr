@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reserva;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ReservaController extends Controller
 {
@@ -45,6 +46,35 @@ class ReservaController extends Controller
     public function store(Request $request)
     {
         //
+        DB::beginTransaction();
+        try{
+            //Instancia reserva
+            $reserva = new Reserva();
+            $reserva->CreationDate = Carbon::parse($request->input('CreationDate'))->format('Y-m-d');
+            $reserva->startDate = Carbon::parse($request->input('startDate'))->format('Y-m-d');
+            $reserva->finalDate = Carbon::parse($request->input('finalDate'))->format('Y-m-d');
+            $reserva->reservecol =$request->input('reservecol');
+            $reserva->numPersons = $request->input('numPersons');
+
+            //Guardar encabezado
+            $reserva->save();
+
+            //Instancia Detalle reserva
+            $detalles = $request->input('detalles');
+            foreach ($detalles as $item) {
+                $reserva->productos()->attach($item['idItem'], [
+                    'precio' => $item['precio']
+                ]);
+            }
+
+            DB::commit();
+            $response = 'Reserva creada!';
+            return response()->json($response, 201);
+
+        }catch(\Exception $e){
+            DB::rollback();
+            return response()->json($e->getMessage(), 422);
+        }
     }
 
     /**
