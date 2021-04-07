@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DetalleController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ReservaController;
@@ -34,6 +35,18 @@ Route::group(['prefix' => 'p1'], function () {
         ], function ($router) {
             Route::get('', [ReservaController::class, 'index']);
         });
+
+        //Ruta de Auth
+        Route::group ([
+          'prefix' =>'auth'
+        ],function($router){
+            Route::post('login',[AuthController::class,'login']);
+            Route::post('register', [AuthController::class, 'register']);
+            Route::post('logout', [AuthController::class, 'logout']);
+
+        });
+
+
 
         //Ruta de Rol
         Route::group([
