@@ -33,7 +33,7 @@ Route::group(['prefix' => 'p1'], function () {
         Route::group([
             'prefix' => 'reserva'
         ], function ($router) {
-            Route::get('', [ReservaController::class, 'index']);
+            Route::get('', [ReservaController::class, 'index'])->middleware(['auth:api', 'scopes:administrador']);
         });
 
         //Ruta de Auth

@@ -55,6 +55,8 @@ class ReservaController extends Controller
             $reserva->finalDate = Carbon::parse($request->input('finalDate'))->format('Y-m-d');
             $reserva->reservecol =$request->input('reservecol');
             $reserva->numPersons = $request->input('numPersons');
+            $user = auth('api')->user();
+            $reserva->user()->associate($user->id);
 
             //Guardar encabezado
             $reserva->save();
