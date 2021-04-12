@@ -45,10 +45,7 @@ export class DetalleComponent implements OnInit {
 
   //elimina el detalle
   eliminar(param) {
-    alertify.confirm(
-      'Desea eliminar este registro',
-      function () {
-        //confirma y hace la acción
+
         this.gService
           .create('producto/detalle/' + param, param)
           .pipe(takeUntil(this.destroy$))
@@ -60,11 +57,6 @@ export class DetalleComponent implements OnInit {
               alertify.error('Ha ocurrido un error al eliminar');
             }
           });
-      },
-      function () {
-        //no hace nada
-      }
-    );
 
   }
 
