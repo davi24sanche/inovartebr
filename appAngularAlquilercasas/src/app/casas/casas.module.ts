@@ -9,6 +9,7 @@ import { ProductoShowComponent } from './producto-show/producto-show.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetalleCreateComponent } from './detalle-create/detalle-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DetalleUpdateComponent } from './detalle-update/detalle-update.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DetalleComponent,
     ProductoShowComponent,
     DetalleCreateComponent,
+    DetalleUpdateComponent
   ],
   imports: [
     CommonModule,

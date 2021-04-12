@@ -5,12 +5,14 @@ import { ReservaComponent } from './reserva/reserva.component';
 import { DetalleComponent } from './detalle/detalle.component';
 import { ProductoShowComponent } from './producto-show/producto-show.component';
 import { DetalleCreateComponent } from './detalle-create/detalle-create.component';
+import { DetalleUpdateComponent } from './detalle-update/detalle-update.component';
 
 const routes: Routes = [
   { path: 'casas/producto', component: ProductoComponent },
   { path: 'casas/reserva', component: ReservaComponent },
   { path: 'casas/detalle', component: DetalleComponent },
   { path: 'casas/detalle/create', component: DetalleCreateComponent },
+  { path: 'casas/detalle/update/:id', component: DetalleUpdateComponent },
   { path: 'casas/producto/:id', component: ProductoShowComponent },
 ];
 

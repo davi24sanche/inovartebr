@@ -33,7 +33,7 @@ Route::group(['prefix' => 'p1'], function () {
         Route::group([
             'prefix' => 'reserva'
         ], function ($router) {
-            Route::get('', [ReservaController::class, 'index'])->middleware(['auth:api', 'scopes:administrador']);
+            Route::get('', [ReservaController::class, 'index']);
         });
 
         //Ruta de Auth
@@ -59,15 +59,20 @@ Route::group(['prefix' => 'p1'], function () {
             Route::get('', [DetalleController::class, 'index']);
             Route::post('', [DetalleController::class, 'store']);
             Route::post('/{id}', [DetalleController::class, 'destroy']);
+            Route::patch('/{id}', [DetalleController::class, 'actualizar']);
         });
 
+        //Ruta de Mostrar Detalle Personalizado
         Route::group([
             'prefix' => 'detalleShow'
         ], function ($router) {
             Route::get('', [DetalleController::class, 'detallado']);
-
+            //esta sirve para eliminar
+            Route::get('/{id}', [DetalleController::class, 'detallado_id']);
         });
 
+
+        //Ruta de tipos
         Route::group([
             'prefix' => 'tipo'
         ], function ($router) {
@@ -82,7 +87,9 @@ Route::group(['prefix' => 'p1'], function () {
 
         //Productos
         Route::post('', [ProductoController::class, 'store']);
-        Route::patch('/{id}',[ProductoController::class,'update']
+        Route::patch(
+            '/{id}',
+            [ProductoController::class, 'update']
         );
     });
 });

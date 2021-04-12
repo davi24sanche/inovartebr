@@ -16,7 +16,6 @@ export class DetalleComponent implements OnInit {
   datos: any;
   notification: NotificacionService;
 
-
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     private router: Router,
@@ -26,6 +25,11 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.listaDetalles();
+  }
+  modificar(idDetalle) {
+    this.router.navigate(['update/' + idDetalle], {
+      relativeTo: this.route,
+    });
   }
 
   crearDetalle() {
@@ -45,19 +49,17 @@ export class DetalleComponent implements OnInit {
 
   //elimina el detalle
   eliminar(param) {
-
-        this.gService
-          .create('producto/detalle/' + param, param)
-          .pipe(takeUntil(this.destroy$))
-          .subscribe((data: any) => {
-            if (data == 1) {
-              alertify.success('Eliminado Correctamente');
-              this.listaDetalles();
-            } else {
-              alertify.error('Ha ocurrido un error al eliminar');
-            }
-          });
-
+    this.gService
+      .create('producto/detalle/' + param, param)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((data: any) => {
+        if (data == 1) {
+          alertify.success('Eliminado Correctamente');
+          this.listaDetalles();
+        } else {
+          alertify.error('Ha ocurrido un error al eliminar');
+        }
+      });
   }
 
   ngOnDestroy() {

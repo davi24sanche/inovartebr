@@ -32,7 +32,6 @@ class DetalleController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -53,36 +52,29 @@ class DetalleController extends Controller
                 'tipo_id' => 'required|numeric'
             ]
         );
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return response()->json($validator->messages(), 422);
         }
-        try
-        {
+        try {
             //Instancia
             $dtail = new Detalle();
             $dtail->name = $request->input('name');
             $dtail->description = $request->input('description');
             $dtail->state = $request->input('state');
             $dtail->price = $request->input('price');
-            $dtail->tipo_id = $request ->input('tipo_id');
+            $dtail->tipo_id = $request->input('tipo_id');
 
             //Guardar el detalle en la BD
-            if ($dtail->save())
-            {
+            if ($dtail->save()) {
                 $response = 'Detalle creado!';
                 return response()->json($response, 201);
-            }
-            else
-            {
+            } else {
                 $response = [
                     'msg' => 'Error durante la creación'
                 ];
                 return response()->json($response, 404);
             }
-
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return response()->json($e->getMessage(), 422);
         }
     }
@@ -95,10 +87,10 @@ class DetalleController extends Controller
      */
     public function show(Detalle $detalle)
     {
-
     }
 
-    public function detallado(){
+    public function detallado()
+    {
         try {
             //Listar los detalles a desplegar
             $detalles =
@@ -111,7 +103,17 @@ class DetalleController extends Controller
         } catch (Exception $ex) {
             return response()->json($ex->getMessage(), 422);
         }
+    }
 
+    public function detallado_id(int $id)
+    {
+        try {
+            //Listar el detalle especifico en el id
+            $detalles = Detalle::find($id);
+            return response()->json($detalles, 200);
+        } catch (Exception $ex) {
+            return response()->json($ex->getMessage(), 422);
+        }
     }
 
 
@@ -133,9 +135,37 @@ class DetalleController extends Controller
      * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Detalle $detalle)
+    public function actualizar(Request $request, $id)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|min:3',
+                'description' => 'required|min:5',
+                'state' => 'required|min:6',
+                'price' => 'required|numeric',
+                'tipo_id' => 'required|numeric'
+            ]
+        );
+        if ($validator->fails()) {
+            return response()->json($validator->messages(), 422);
+        }
+
+        $dtail = Detalle::find($id);
+        $dtail->name = $request->input('name');
+        $dtail->description = $request->input('description');
+        $dtail->state = $request->input('state');
+        $dtail->price = $request->input('price');
+        $dtail->tipo_id = $request->input('tipo_id');
+
+        if ($dtail->update()) {
+            $response = 'Detalle actualizado!';
+            return response()->json($response, 200);
+        }
+        $response = [
+            'msg' => 'Error durante la actualización'
+        ];
+        return response()->json($response, 404);
     }
 
     /**
