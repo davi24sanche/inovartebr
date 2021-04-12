@@ -1,58 +1,46 @@
-<div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-    Detalles
-  </h3>
-  <div class="card-body">
-    <div id="table">
-      <table
-        class="table table-bordered table-responsive-md table-striped text-center"
-      >
-        <thead>
-          <tr>
-            <th class="text-center">Detalle</th>
-            <th class="text-center">Nombre</th>
-            <th class="text-center">Descripción</th>
-            <th class="text-center">Estado</th>
-            <th class="text-center">Orden</th>
-            <th class="text-center">Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of datos">
-            <td class="pt-3-half" contenteditable="true">{{ item.id }}</td>
-            <td class="pt-3-half" contenteditable="true">{{ item.name }}</td>
-            <td class="pt-3-half" contenteditable="true"> {{ item.description }}</td>
-            <td class="pt-3-half" contenteditable="true">{{ item.state }}</td>
+<div class="container">
+  <div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+      Detalles
+    </h3>
 
-            <td class="pt-3-half">
-              <span class="table-up"
-                ><a href="#!" class="indigo-text"
-                  ><i
-                    class="fas fa-long-arrow-alt-up"
-                    aria-hidden="true"
-                  ></i></a
-              ></span>
-              <span class="table-down"
-                ><a href="#!" class="indigo-text"
-                  ><i
-                    class="fas fa-long-arrow-alt-down"
-                    aria-hidden="true"
-                  ></i></a
-              ></span>
-            </td>
-            <td>
-              <span class="table-remove">
-                <button
-                  type="button"
-                  class="btn btn-danger btn-rounded btn-sm my-0"
-                >
-                  Eliminar
-                </button>
-              </span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <a class="btn btn-primary" (click)="crearDetalle()" ><i class="fas fa-plus"></i> Crear Nuevo</a>
+
+    <div class="card-body">
+      <div id="table">
+        <table
+          class="table table-bordered table-responsive-md table-striped text-center"
+        >
+          <thead>
+            <tr>
+              <th class="text-center">Modificar</th>
+              <th class="text-center">Detalle</th>
+              <th class="text-center">Nombre</th>
+              <th class="text-center">Descripción</th>
+              <th class="text-center">Estado</th>
+              <th class="text-center">Precio</th>
+              <th class="text-center">Tipo</th>
+              <th class="text-center">Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of datos">
+              <td class="pt-3-half">
+                <a class="btn btn-primary">Modificar</a>
+              </td>
+              <td class="pt-3-half">{{ item.id }}</td>
+              <td class="pt-3-half">{{ item.name }}</td>
+              <td class="pt-3-half">{{ item.description }}</td>
+              <td class="pt-3-half">{{ item.state }}</td>
+              <td class="pt-3-half">{{ item.price }}</td>
+              <td class="pt-3-halt">{{ item.tipoName}}</td>
+              <td class="pt-3-halt"><button type="submit" class="form-control btn btn-danger"  (click)="eliminar(item.id)" >Eliminar</button> </td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Detalle;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use DB;
 
 class DetalleController extends Controller
 {
@@ -16,7 +18,7 @@ class DetalleController extends Controller
     public function index()
     {
         try {
-            //Listar los productos
+            //Listar los detalles
             return response()->json(Detalle::orderBy('price')->get(), 200);
         } catch (Exception $ex) {
             return response()->json($ex->getMessage(), 422);
@@ -30,7 +32,7 @@ class DetalleController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -41,7 +43,48 @@ class DetalleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|min:3',
+                'description' => 'required|min:5',
+                'state' => 'required|min:6',
+                'price' => 'required|numeric',
+                'tipo_id' => 'required|numeric'
+            ]
+        );
+        if ($validator->fails())
+        {
+            return response()->json($validator->messages(), 422);
+        }
+        try
+        {
+            //Instancia
+            $dtail = new Detalle();
+            $dtail->name = $request->input('name');
+            $dtail->description = $request->input('description');
+            $dtail->state = $request->input('state');
+            $dtail->price = $request->input('price');
+            $dtail->tipo_id = $request ->input('tipo_id');
+
+            //Guardar el detalle en la BD
+            if ($dtail->save())
+            {
+                $response = 'Detalle creado!';
+                return response()->json($response, 201);
+            }
+            else
+            {
+                $response = [
+                    'msg' => 'Error durante la creación'
+                ];
+                return response()->json($response, 404);
+            }
+
+        }
+        catch (\Exception $e) {
+            return response()->json($e->getMessage(), 422);
+        }
     }
 
     /**
@@ -52,8 +95,25 @@ class DetalleController extends Controller
      */
     public function show(Detalle $detalle)
     {
-        //
+
     }
+
+    public function detallado(){
+        try {
+            //Listar los detalles a desplegar
+            $detalles =
+                DB::table('detalles')
+                ->join('tipos', 'detalles.tipo_id', '=', 'tipos.id')
+                ->select('detalles.*', 'tipos.name as tipoName')
+                ->get();
+
+            return response()->json($detalles, 200);
+        } catch (Exception $ex) {
+            return response()->json($ex->getMessage(), 422);
+        }
+
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -84,8 +144,14 @@ class DetalleController extends Controller
      * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Detalle $detalle)
+    public function destroy(int $detalle)
     {
-        //
+        try {
+            //eliminar
+            $detalles = Detalle::destroy($detalle);
+            return response()->json($detalles, 200);
+        } catch (Exception $ex) {
+            return response()->json($ex->getMessage(), 422);
+        }
     }
 }

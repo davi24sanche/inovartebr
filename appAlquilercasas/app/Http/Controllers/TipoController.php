@@ -17,9 +17,8 @@ class TipoController extends Controller
     {
         try {
 
-            $tipo = Tipo::all();
+            $tipo = Tipo::orderBy('id')->get();
             $response = $tipo;
-
             return response()->json($response, 200);
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 422);

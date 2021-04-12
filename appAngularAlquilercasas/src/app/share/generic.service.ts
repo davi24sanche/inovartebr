@@ -6,27 +6,22 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-
 export class GenericService {
   // URL del API, definida en enviroments->enviroment.ts
   urlAPI: string = environment.apiURL;
-
   //Información usuario actual
   currentUser: any;
   // Header para formData
   headers_formdata = new HttpHeaders();
 
   //Inyectar cliente HTTP para las solicitudes al API
-  // Personalización de errores
-  //Servicio de autentificación
   constructor(private http: HttpClient) {
-   // Headers FormData
+    // Headers FormData
     this.headers_formdata = new HttpHeaders();
     this.headers_formdata = this.headers_formdata.append(
       'processData',
       'false'
     );
-
     this.headers_formdata = this.headers_formdata.append(
       'Content-Type',
       'multipart/form-data'
@@ -35,7 +30,6 @@ export class GenericService {
       'Access-Control-Allow-Origin',
       '*'
     );
-
   }
   // Listar
   list(endopoint: string): Observable<any> {
@@ -56,14 +50,15 @@ export class GenericService {
       objUpdate
     );
   }
-
- //Métodos Gestión FormData
+  //Métodos Gestión FormData
   //FormData crear
   create_formdata(
     endopoint: string,
     objCreate: FormData | any
   ): Observable<any | any[]> {
-
+    if (this.currentUser != null) {
+      objCreate.append('user_id', this.currentUser.user.id);
+    }
     return this.http.post<any | any[]>(this.urlAPI + endopoint, objCreate, {
       headers: this.headers_formdata,
     });
@@ -81,7 +76,6 @@ export class GenericService {
       }
     );
   }
-
   //Crear formData con la información del formulario
   toFormData<T>(formValue: T) {
     var formData = new FormData();
@@ -91,5 +85,4 @@ export class GenericService {
     }
     return formData;
   }
-
 }

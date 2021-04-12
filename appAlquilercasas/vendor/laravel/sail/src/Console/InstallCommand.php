@@ -11,7 +11,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'sail:install {--services= : The services that should be included in the installation}';
+    protected $signature = 'sail:install {--with= : The services that should be included in the installation}';
 
     /**
      * The console command description.
@@ -27,15 +27,13 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        // if ($this->option('services')) {
-        //     $services = $this->option('services') == 'none' ? [] : explode(',', $this->option('services'));
-        // } elseif ($this->option('no-interaction')) {
-        //     $services = ['mysql', 'redis', 'selenium', 'mailhog'];
-        // } else {
-        //     $services = $this->gatherServicesWithSymfonyMenu();
-        // }
-
-        $services = ['mysql', 'redis', 'selenium', 'mailhog'];
+        if ($this->option('with')) {
+            $services = $this->option('with') == 'none' ? [] : explode(',', $this->option('with'));
+        } elseif ($this->option('no-interaction')) {
+            $services = ['mysql', 'redis', 'selenium', 'mailhog'];
+        } else {
+            $services = $this->gatherServicesWithSymfonyMenu();
+        }
 
         $this->buildDockerCompose($services);
         $this->replaceEnvVariables($services);
@@ -54,9 +52,10 @@ class InstallCommand extends Command
              'mysql',
              'pgsql',
              'redis',
-             'selenium',
-             'mailhog',
+             'memcached',
              'meilisearch',
+             'mailhog',
+             'selenium',
          ], 0, null, true);
     }
 
@@ -112,9 +111,17 @@ class InstallCommand extends Command
     {
         $environment = file_get_contents($this->laravel->basePath('.env'));
 
-        $host = in_array('pgsql', $services) ? 'pgsql' : 'mysql';
+        if (in_array('pgsql', $services)) {
+            $environment = str_replace('DB_CONNECTION=mysql', "DB_CONNECTION=pgsql", $environment);
+            $environment = str_replace('DB_HOST=127.0.0.1', "DB_HOST=pgsql", $environment);
+            $environment = str_replace('DB_PORT=3306', "DB_PORT=5432", $environment);
+        } else {
+            $environment = str_replace('DB_HOST=127.0.0.1', "DB_HOST=mysql", $environment);
+        }
 
-        $environment = str_replace('DB_HOST=127.0.0.1', "DB_HOST=$host", $environment);
+        $environment = str_replace('DB_USERNAME=root', "DB_USERNAME=sail", $environment);
+        $environment = preg_replace("/DB_PASSWORD=(.*)/", "DB_PASSWORD=password", $environment);
+
         $environment = str_replace('MEMCACHED_HOST=127.0.0.1', 'MEMCACHED_HOST=memcached', $environment);
         $environment = str_replace('REDIS_HOST=127.0.0.1', 'REDIS_HOST=redis', $environment);
 

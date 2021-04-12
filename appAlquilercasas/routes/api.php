@@ -37,16 +37,13 @@ Route::group(['prefix' => 'p1'], function () {
         });
 
         //Ruta de Auth
-        Route::group ([
-          'prefix' =>'auth'
-        ],function($router){
-            Route::post('login',[AuthController::class,'login']);
+        Route::group([
+            'prefix' => 'auth'
+        ], function ($router) {
+            Route::post('login', [AuthController::class, 'login']);
             Route::post('register', [AuthController::class, 'register']);
             Route::post('logout', [AuthController::class, 'logout']);
-
         });
-
-
 
         //Ruta de Rol
         Route::group([
@@ -60,7 +57,24 @@ Route::group(['prefix' => 'p1'], function () {
             'prefix' => 'detalle'
         ], function ($router) {
             Route::get('', [DetalleController::class, 'index']);
+            Route::post('', [DetalleController::class, 'store']);
+            Route::post('/{id}', [DetalleController::class, 'destroy']);
         });
+
+        Route::group([
+            'prefix' => 'detalleShow'
+        ], function ($router) {
+            Route::get('', [DetalleController::class, 'detallado']);
+
+        });
+
+        Route::group([
+            'prefix' => 'tipo'
+        ], function ($router) {
+            Route::get('', [TipoController::class, 'index']);
+        });
+
+
 
 
         Route::get('', [ProductoController::class, 'index']);
@@ -68,15 +82,7 @@ Route::group(['prefix' => 'p1'], function () {
 
         //Productos
         Route::post('', [ProductoController::class, 'store']);
-        Route::patch(
-        '/{id}',
-        [
-            ProductoController::class,
-            'update'
-        ]
+        Route::patch('/{id}',[ProductoController::class,'update']
         );
-
-
-});
-
+    });
 });
