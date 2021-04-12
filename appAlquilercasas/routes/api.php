@@ -27,13 +27,20 @@ Route::group(['prefix' => 'p1'], function () {
             'prefix' => 'tipo'
         ], function ($router) {
             Route::get('', [TipoController::class, 'index']);
+
         });
 
         //Ruta de Reservas
         Route::group([
             'prefix' => 'reserva'
         ], function ($router) {
-            Route::get('', [ReservaController::class, 'index'])->middleware(['auth:api', 'scopes:administrador']);
+            Route::get('', [ReservaController::class, 'index']);
+            Route::patch(
+                '/{id}',
+                [
+                    ReservaController::class, 'update'
+                ]
+                );
         });
 
         //Ruta de Auth
