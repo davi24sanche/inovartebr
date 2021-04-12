@@ -5,7 +5,12 @@ import { takeUntil } from 'rxjs/operators';
 import { GenericService } from 'src/app/share/generic.service';
 import { NotificacionService } from 'src/app/share/notificacion.service';
 import { ActivatedRoute } from '@angular/router';
-import {Validators,FormGroup,FormBuilder} from '@angular/forms';
+import {
+  Validators,
+  FormGroup,
+  FormBuilder,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-detalle-update',
@@ -26,7 +31,7 @@ export class DetalleUpdateComponent implements OnInit {
     private gService: GenericService,
     private notificacion: NotificacionService
   ) {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = + this.route.snapshot.paramMap.get('id');
     this.obtenerDetalle(id);
   }
 

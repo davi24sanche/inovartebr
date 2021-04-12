@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-11">
-      <h4 class="mb-3" style="text-align: center">Crear Detalle</h4>
+      <h4 class="mb-3" style="text-align: center">Modificar Detalle</h4>
       <div class="container">
         <form [formGroup]="formUpdate" (ngSubmit)="submitForm()" novalidate>
           <div class="row">
@@ -56,10 +56,18 @@
                   >Tipo
                 </label>
                 <div class="col-sm-8">
-                  <select formControlName="tipo_id" name="tipo_id" class="form-control">
-                      <option value="{{item.id}}" *ngFor="let item of tiposList">{{item.name}}</option>
+                  <select
+                    formControlName="tipo_id"
+                    name="tipo_id"
+                    class="form-control"
+                  >
+                    <option
+                      value="{{ item.id }}"
+                      *ngFor="let item of tiposList"
+                    >
+                      {{ item.name }}
+                    </option>
                   </select>
-
                 </div>
                 <div class="col-auto">
                   <small
@@ -114,9 +122,7 @@
                   </select>
                 </div>
 
-                <div class="col-auto">
-
-                </div>
+                <div class="col-auto"></div>
               </div>
               <div style="text-align: center" class="col-md-12 mb-3">
                 <div class="btn-group" role="group">
@@ -124,7 +130,8 @@
                   <button
                     type="reset"
                     class="btn btn-danger"
-                    (click)="onReset()">
+                    (click)="onReset()"
+                  >
                     Cancelar
                   </button>
                   <button type="button" class="btn btn-info" (click)="onBack()">
