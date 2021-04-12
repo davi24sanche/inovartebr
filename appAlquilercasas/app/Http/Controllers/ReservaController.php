@@ -90,16 +90,6 @@ class ReservaController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Reserva  $reserva
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reserva $reserva)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -108,9 +98,34 @@ class ReservaController extends Controller
      * @param  \App\Models\Reserva  $reserva
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reserva $reserva)
+    public function update(Request $request, $id)
     {
-        //
+        try{
+            $reserva = Reserva::find($id);
+            $reserva->CreationDate = Carbon::parse($request->input('CreationDate'))->format('Y-m-d');
+            $reserva->startDate = Carbon::parse($request->input('startDate'))->format('Y-m-d');
+            $reserva->finalDate = Carbon::parse($request->input('finalDate'))->format('Y-m-d');
+            $reserva->reservecol = $request->input('reservecol');
+            $reserva->numPersons = $request->input('numPersons');
+
+            $user = auth('api')->user();
+            $user_id = $user->id;
+
+            if($reserva->update()){
+                if(!is_null($request->input('detalle_id'))){
+                    $reserva->detalles()->sync($request->input('detalle_id'));
+                }
+                $response = 'Reserva Actualizada';
+                return response()->json($response,200);
+            }
+            $response = [
+                'msg' => 'Error durante la actualización'
+            ];
+
+        }
+        catch(\Exception $e){
+              return response()->json($e->getMessage(), 422);
+        }
     }
 
     /**
