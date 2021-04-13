@@ -28,8 +28,9 @@
         </li>
 
       </ul>
+
       <ul class="nav navbar-nav ml-auto">
-        <li>
+       <!--  <li>
           <span class="navbar-text">
             Usuario
             <span class="badge badge-light"> </span>
@@ -41,7 +42,31 @@
 
         <li>
           <a class="btn btn-primary"><i class="fas fa-user-lock"></i> Cerrar Sesión</a>
+        </li> -->
+
+        <li class="nav-item dropdown" ngbDropdown placement="bottom-right" display="dynamic">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+            aria-expanded="false">
+            <span>
+              <i class="fas fa-user"></i>
+              <i *ngIf="isAutenticated"> {{currentUser.user.email}}</i>
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-item" *ngIf="isAutenticated">
+              <div class="form-group">{{currentUser.user.name}}</div>
+              <div class="form-group">{{currentUser.user.email}}</div>
+            </div>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['usuario/login']" *ngIf="!(isAutenticated)"><i class="fas fa-user"></i>
+              Ingresar</a>
+            <a class="dropdown-item" (click)="logout()" *ngIf="isAutenticated"><i class="fas fa-sign-out-alt"></i>
+              Salir</a>
+          </div>
         </li>
+
+
+
       </ul>
     </div>
   </div>

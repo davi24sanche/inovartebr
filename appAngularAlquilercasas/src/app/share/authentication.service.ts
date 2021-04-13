@@ -44,7 +44,7 @@ export class AuthenticationService {
   createUser(user: any): Observable<any> {
     //http://127.0.0.1:8000/api/v1/
     return this.http.post<any>(
-      this.ServerUrl + 'videojuego/auth/register',
+      this.ServerUrl + 'producto/auth/register',
       user
     );
   }
@@ -52,7 +52,7 @@ export class AuthenticationService {
   //Login
   loginUser(user: any): Observable<any> {
     return this.http
-      .post<any>(this.ServerUrl + 'videojuego/auth/login', user)
+      .post<any>(this.ServerUrl + 'producto/auth/login', user)
       .pipe(
         map((user) => {
           // almacene los detalles del usuario y el token jwt
@@ -75,7 +75,7 @@ export class AuthenticationService {
       //Eliminarlo del observable del boleano si esta autenticado
       this.authenticated.next(false);
 
-      return this.http.post<any>(this.ServerUrl + 'videojuego/auth/logout', {});
+      return this.http.post<any>(this.ServerUrl + 'producto/auth/logout', {});
     }
   }
 }
