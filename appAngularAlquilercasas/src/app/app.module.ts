@@ -11,6 +11,7 @@ import { CasasModule } from './casas/casas.module';
 import { HttpErrorInterceptorService } from './share/http-error-interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
