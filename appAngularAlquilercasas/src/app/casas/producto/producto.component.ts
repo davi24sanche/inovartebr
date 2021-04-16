@@ -21,6 +21,16 @@ export class ProductoComponent implements OnInit {
   ngOnInit(): void {
     this.listaProductos();
   }
+
+
+  crearProducto() {
+
+    this.router.navigate(['/casas/producto/create'], {
+      relativeTo: this.route,
+    });
+    
+  }
+
   listaProductos() {
     this.gService
       .list('producto/')

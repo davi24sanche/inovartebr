@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <form>
     <div class="site-section-title">
       <h2>Casas</h2>
@@ -65,27 +65,24 @@
       <button type="submit" class="btn btn-primary">Registrar</button>
     </fieldset>
 
-    <hr />
+    <hr /> -->
+<div class="container">
+  <div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+
+    </h3>
+
+    <a class="btn btn-primary" (click)="crearProducto()"><i class="fas fa-plus"></i> Crear Nuevo</a>
+
     <!-- Editable table -->
     <div class="card">
       <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
-        Productos actuales
+        Productos
       </h3>
       <div class="card-body">
         <div id="table" class="table-editable">
-          <span class="table-add float-right mb-3 mr-2">
-            <a
-              class="btn btn-primary"
-              data-toggle="collapse"
-              href="#idformularioAgregar"
-              role="button"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-            >
-              Agregar Nuevo
-            </a>
-          </span>
-          <table
+
+        <table
             class="table table-bordered table-responsive-md table-striped text-center"
           >
             <thead>
@@ -147,6 +144,5 @@
       </div>
     </div>
     <!-- Editable table -->
-  </form>
-</div>
+
 <br />

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import {
   Validators,
   FormGroup,
@@ -35,9 +36,10 @@ export class ProductoCreateComponent implements OnInit {
 
   reactiveForm(){
     this.formCreate = this.fb.group({
-      nombre: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      precio: ['', [Validators.required, Validators.pattern('[0-9]+')]],
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+       state: ['', [Validators.required]],
+       price: ['', [Validators.required, Validators.pattern('[0-9]+')]],
       image: [''],
     });
 
@@ -61,7 +63,6 @@ export class ProductoCreateComponent implements OnInit {
 
   submitForm() {
     this.makeSubmit = true;
-
     let formData = new FormData();
     formData = this.gService.toFormData(this.formCreate.value);
     formData.append('_method', 'POST');
@@ -69,7 +70,7 @@ export class ProductoCreateComponent implements OnInit {
       .create_formdata('producto', formData)
       .subscribe((respuesta: any) => {
         this.producto = respuesta;
-        this.router.navigate(['/producto/show'], {
+        this.router.navigate(['casas/producto'], {
           queryParams: { register: 'true' },
         });
       });
@@ -79,7 +80,7 @@ export class ProductoCreateComponent implements OnInit {
     this.formCreate.reset();
   }
   onBack() {
-    this.router.navigate(['/producto/show']);
+    this.router.navigate(['/casas/producto']);
   }
 
    public errorHandling = (control: string, error: string) => {
