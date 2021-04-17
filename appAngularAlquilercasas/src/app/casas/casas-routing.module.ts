@@ -6,7 +6,8 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { ProductoShowComponent } from './producto-show/producto-show.component';
 import { DetalleCreateComponent } from './detalle-create/detalle-create.component';
 import { DetalleUpdateComponent } from './detalle-update/detalle-update.component';
-import { ProductoCreateComponent } from './producto-create/producto-create.component'
+import { ProductoCreateComponent } from './producto-create/producto-create.component';
+import { ReservaCreateComponent } from './reserva-create/reserva-create.component';
 
 const routes: Routes = [
   { path: 'casas/producto', component: ProductoComponent },
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'casas/detalle', component: DetalleComponent },
   { path: 'casas/detalle/create', component: DetalleCreateComponent },
   { path: 'casas/detalle/update/:id', component: DetalleUpdateComponent },
-  { path: 'casas/producto/:id', component: ProductoShowComponent },
+  { path: 'casas/producto/show/:id', component: ProductoShowComponent },
   { path: 'casas/producto/create', component: ProductoCreateComponent },
+  { path: 'casas/reserva/create', component: ReservaCreateComponent },
 ];
 
 @NgModule({

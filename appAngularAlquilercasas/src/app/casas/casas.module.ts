@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetalleUpdateComponent } from './detalle-update/detalle-update.component';
 import { ProductoCreateComponent } from './producto-create/producto-create.component';
 import { ProductoUpdateComponent } from './producto-update/producto-update.component';
+import { ReservaCreateComponent } from './reserva-create/reserva-create.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductoUpdateComponent } from './producto-update/producto-update.compo
     DetalleCreateComponent,
     DetalleUpdateComponent,
     ProductoCreateComponent,
-    ProductoUpdateComponent
+    ProductoUpdateComponent,
+    ReservaCreateComponent
   ],
   imports: [
     CommonModule,
