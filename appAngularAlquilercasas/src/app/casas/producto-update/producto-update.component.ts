@@ -14,10 +14,10 @@ import { NotificacionService } from 'src/app/share/notificacion.service';
 @Component({
   selector: 'app-producto-update',
   templateUrl: './producto-update.component.html',
-  styleUrls: ['./producto-update.component.css']
+  styleUrls: ['./producto-update.component.css'],
 })
 export class ProductoUpdateComponent implements OnInit {
- producto: any;
+  producto: any;
   imageURL: string;
   formUpdate: FormGroup;
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -30,49 +30,44 @@ export class ProductoUpdateComponent implements OnInit {
     private gService: GenericService,
     private notificacion: NotificacionService
   ) {
-
     const id = +this.route.snapshot.paramMap.get('id');
     this.obtenerProducto(id);
-    }
-
-  ngOnInit(): void {
   }
 
-  obtenerProducto(id: any){
+  ngOnInit(): void {}
+
+  obtenerProducto(id: any) {
     this.gService.get('producto', id).subscribe((respuesta: any) => {
       this.producto = respuesta;
       //Obtenida la información del producto
       //se construye el formulario
       this.reactiveForm();
-  });
-}
+    });
+  }
 
-reactiveForm() {
-
-
+  reactiveForm() {
     //Si hay información del producto
     if (this.producto) {
-
       //Cargar la información del producto
       //en los controles que conforman el formulario
       this.formUpdate = this.fb.group({
         id: [this.producto.id, [Validators.required]],
-        nombre: [this.producto.nombre, [Validators.required]],
-        descripcion: [this.producto.descripcion, [Validators.required]],
+        name: [this.producto.name, [Validators.required]],
+        description: [this.producto.description, [Validators.required]],
+        state: [this.producto.state, [Validators.required]],
 
-        precio: [
-          this.producto.precio,
+        price: [
+          this.producto.price,
           [Validators.required, Validators.pattern('[0-9]+')],
         ],
         image: [''],
-
       });
       // Vista previa imagen
       this.imageURL = this.producto.pathImagen;
     }
   }
 
-   //Obtener la imagen o archivo seleccionado
+  //Obtener la imagen o archivo seleccionado
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -86,7 +81,7 @@ reactiveForm() {
     }
   }
 
-   submitForm() {
+  submitForm() {
     this.makeSubmit = true;
 
     let formData = new FormData();
@@ -101,6 +96,8 @@ reactiveForm() {
         });
       });
   }
+
+  
   onReset() {
     this.formUpdate.reset();
   }
@@ -116,5 +113,4 @@ reactiveForm() {
       (this.makeSubmit || this.formUpdate.controls[control].touched)
     );
   };
-
 }

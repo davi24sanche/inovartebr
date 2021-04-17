@@ -244,8 +244,15 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
+    public function destroy (int $producto)
+
     {
-        //
+        try {
+            //eliminar
+            $productos = Producto::destroy($producto);
+            return response()->json($productos, 200);
+        } catch (Exception $ex) {
+            return response()->json($ex->getMessage(), 422);
+        }
     }
 }

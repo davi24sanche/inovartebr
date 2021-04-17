@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'p1'], function () {
     Route::group(['prefix' => 'producto'], function () {
         //Ruta de tipo
+
         Route::group([
             'prefix' => 'tipo'
         ], function ($router) {
@@ -89,11 +90,13 @@ Route::group(['prefix' => 'p1'], function () {
 
 
 
-
+        //Productos
+        
         Route::get('', [ProductoController::class, 'index']);
         Route::get('/{id}', [ProductoController::class, 'show']);
+        Route::post('/{id}', [ProductoController::class, 'destroy']);
 
-        //Productos
+
         Route::post('', [ProductoController::class, 'store']);
         Route::patch(
             '/{id}',

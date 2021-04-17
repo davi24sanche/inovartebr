@@ -8,6 +8,7 @@ import { DetalleCreateComponent } from './detalle-create/detalle-create.componen
 import { DetalleUpdateComponent } from './detalle-update/detalle-update.component';
 import { ProductoCreateComponent } from './producto-create/producto-create.component';
 import { ReservaCreateComponent } from './reserva-create/reserva-create.component';
+import { ProductoUpdateComponent } from './producto-update/producto-update.component';
 
 const routes: Routes = [
   { path: 'casas/producto', component: ProductoComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'casas/detalle/update/:id', component: DetalleUpdateComponent },
   { path: 'casas/producto/show/:id', component: ProductoShowComponent },
   { path: 'casas/producto/create', component: ProductoCreateComponent },
+  {path:'casas/producto/update/:id',component:ProductoUpdateComponent},
   { path: 'casas/reserva/create', component: ReservaCreateComponent },
 ];
 
