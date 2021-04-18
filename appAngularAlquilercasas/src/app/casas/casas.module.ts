@@ -13,6 +13,8 @@ import { DetalleUpdateComponent } from './detalle-update/detalle-update.componen
 import { ProductoCreateComponent } from './producto-create/producto-create.component';
 import { ProductoUpdateComponent } from './producto-update/producto-update.component';
 import { ReservaCreateComponent } from './reserva-create/reserva-create.component';
+import { ProductoIndexComponent } from './producto-index/producto-index.component';
+import { ReservaIndexComponent } from './reserva-index/reserva-index.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ReservaCreateComponent } from './reserva-create/reserva-create.componen
     DetalleUpdateComponent,
     ProductoCreateComponent,
     ProductoUpdateComponent,
-    ReservaCreateComponent
+    ReservaCreateComponent,
+    ProductoIndexComponent,
+    ReservaIndexComponent
   ],
   imports: [
     CommonModule,

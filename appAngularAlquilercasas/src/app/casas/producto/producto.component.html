@@ -30,8 +30,7 @@
               </tr>
             </thead>
             <tbody>
-
-             <tr *ngFor="let item of datos">
+            <tr *ngFor="let item of datos">
               <td class="pt-3-half">
                 <a class="btn btn-primary" (click)="modificar(item.id)">Modificar</a>
               </td>
@@ -40,11 +39,54 @@
               <td class="pt-3-half">{{ item.description }}</td>
               <td class="pt-3-half">{{ item.state }}</td>
               <td class="pt-3-half">{{ item.price }}</td>
-              <td class="pt-3-halt"><button type="submit" class="form-control btn btn-danger"  (click)=" eliminar(item.id)">Eliminar</button> </td>
+              <td class="pt-3-halt"><button type="submit" class="form-control btn btn-danger"
+                  (click)="eliminar(item.id)">Eliminar</button> </td>
             </tr>
 
 
 
+
+             <!--  <tr *ngFor="let item of datos">
+                <td class="pt-3-half" contenteditable="true">{{ item.id }}</td>
+                <td class="pt-3-half" contenteditable="true">
+                  {{ item.name }}
+                </td>
+                <td class="pt-3-half" contenteditable="true">
+                  {{ item.description }}
+                </td>
+                <td class="pt-3-half" contenteditable="true">
+                  {{ item.price }}
+                </td>
+                <td class="pt-3-half" contenteditable="true">
+                  {{ item.state }}
+                </td>
+                <td class="pt-3-half">
+                  <span class="table-up"
+                    ><a href="#!" class="indigo-text"
+                      ><i
+                        class="fas fa-long-arrow-alt-up"
+                        aria-hidden="true"
+                      ></i></a
+                  ></span>
+                  <span class="table-down"
+                    ><a href="#!" class="indigo-text"
+                      ><i
+                        class="fas fa-long-arrow-alt-down"
+                        aria-hidden="true"
+                      ></i></a
+                  ></span>
+                </td>
+                <td>
+                  <span class="table-remove"
+                    ><button
+                      type="button"
+                      class="btn btn-danger btn-rounded btn-sm my-0"
+                    >
+                      Eliminar
+                    </button></span
+                  >
+                </td>
+              </tr> -->
             </tbody>
           </table>
         </div>

@@ -23,22 +23,24 @@ export class ProductoComponent implements OnInit {
     this.listaProductos();
   }
 
+
   crearProducto() {
+
     this.router.navigate(['/casas/producto/create'], {
       relativeTo: this.route,
     });
+
   }
 
-  modificar(idProducto) {
-    this.router.navigate(['/producto/update/' + idProducto], {
+   modificar(idProducto) {
+    this.router.navigate(['update/' + idProducto], {
       relativeTo: this.route,
     });
   }
 
-  //elimina el detalle
   eliminar(param) {
     this.gService
-      .create('/casas/producto/' + param, param)
+      .create('producto/' + param, param)
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any) => {
         if (data == 1) {

@@ -106,6 +106,9 @@ export class CartService {
 
     return total;
   }
+  public getImpuesto(): number{
+      return  this.getTotal() * (0.13/100);
+  }
   public deleteCart() {
     this.cart.next(null); //Enviamos el valor al Observable
     this.qtyItems.next(0);
