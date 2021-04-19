@@ -2,15 +2,25 @@
   <div class="jumbotron">
     <div *ngIf="datos?.id">
       <h1>{{ datos.name }}</h1>
-      <p>{{ datos.description }}</p>
 
+      <div class="row no-gutters overflow-hidden flex-md-row mb-6 h-md-250">
+        <div class="col p-6">
+          <img
+            src="{{ datos.pathImage }}"
+            alt="{{ datos.naameImage }}"
+            style="max-width: 33.33%"
+            class="img-thumbnail rounded responsive float-left"
+          />
+        </div>
+      </div>
+      <h4 class="bolder">Descripción</h4>
+      <p>{{ datos.description }}</p>
       <br />
       <h2>Precio: ${{ datos.price }}</h2>
       <h2>Estado: {{ datos.state }}</h2>
       <br />
       <a
-        routerLink="/casas/reserva"
-        routerLinkActive="active"
+        href="javascript:window.history.back();"
         class="btn btn-primary btn-lg"
       >
         Volver

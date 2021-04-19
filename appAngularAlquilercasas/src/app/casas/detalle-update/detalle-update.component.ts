@@ -23,6 +23,7 @@ export class DetalleUpdateComponent implements OnInit {
   formUpdate: FormGroup;
   tiposList: any;
   makeSubmit: boolean = false;
+  id: any;
 
   constructor(
     public fb: FormBuilder,
@@ -31,7 +32,7 @@ export class DetalleUpdateComponent implements OnInit {
     private gService: GenericService,
     private notificacion: NotificacionService
   ) {
-    const id = + this.route.snapshot.paramMap.get('id');
+    const id = +this.route.snapshot.paramMap.get('id');
     this.obtenerDetalle(id);
   }
 
@@ -47,6 +48,7 @@ export class DetalleUpdateComponent implements OnInit {
   }
 
   obtenerDetalle(id: any) {
+    this.id = id;
     this.gService
       .get('producto/detalleShow', id)
       .pipe(takeUntil(this.destroy$))
@@ -60,6 +62,7 @@ export class DetalleUpdateComponent implements OnInit {
   reactiveForm() {
     this.listaTipos();
     this.formUpdate = this.fb.group({
+      id: [this.route.snapshot.paramMap.get('id'), [Validators.required]],
       name: [this.detalle.name, [Validators.required]],
       description: [this.detalle.description, [Validators.required]],
       state: [this.detalle.state, [Validators.required]],

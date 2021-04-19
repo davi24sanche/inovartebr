@@ -80,7 +80,6 @@ Route::group(['prefix' => 'p1'], function () {
             Route::get('/{id}', [DetalleController::class, 'detallado_id']);
         });
 
-
         //Ruta de tipos
         Route::group([
             'prefix' => 'tipo'
@@ -88,19 +87,12 @@ Route::group(['prefix' => 'p1'], function () {
             Route::get('', [TipoController::class, 'index']);
         });
 
-
-
         //Productos
-        
         Route::get('', [ProductoController::class, 'index']);
-        Route::get('/{id}', [ProductoController::class, 'show']);
-        Route::post('/{id}', [ProductoController::class, 'destroy']);
-
-
         Route::post('', [ProductoController::class, 'store']);
-        Route::patch(
-            '/{id}',
-            [ProductoController::class, 'update']
-        );
+        Route::get('/{id}', [ProductoController::class, 'show']);
+        Route::patch('/{id}',[ProductoController::class, 'update']);
+
+
     });
 });

@@ -3,6 +3,13 @@
     <div class="col-md-11">
       <h4 class="mb-3" style="text-align: center">Modificar Producto</h4>
       <div class="container">
+
+
+        <ng-template #loading>
+      <img class="img-fluid rounded mx-auto d-block" src="/assets/imgenes/loading.gif" alt="Cargando..."
+        style="width: 300px;" />
+    </ng-template>
+    <ng-template [ngIf]="producto" [ngIfElse]="loading">
         <form [formGroup]="formUpdate" (ngSubmit)="submitForm()" novalidate>
           <div class="row">
             <div class="col-md-12">
@@ -55,7 +62,7 @@
                 <label for="state" class="col-sm-4 col-form-label">Estado</label>
                 <div class="col-sm-8">
                   <select class="form-control" formControlName="state" name="state">
-                    <option selected value="Activo">Activo</option>
+                    <option value="Activo">Activo</option>
                     <option value="Inactivo">Inactivo</option>
                   </select>
                 </div>
@@ -83,13 +90,14 @@
                   </div>
                   <!--Mostrar imagen seleccionada-->
                   <div *ngIf="imageURL && imageURL !== ''" class="card" style="width: 18rem;">
-                    <img [src]="imageURL" alt="Imagen videojuego" class="img-fluid card-img-top">
+                    <img [src]="imageURL" alt="Imagen" class="img-fluid card-img-top"/>
                   </div>
 
                 </div>
               </div>
           </div>
         </form>
+    </ng-template>
       </div>
     </div>
   </div>

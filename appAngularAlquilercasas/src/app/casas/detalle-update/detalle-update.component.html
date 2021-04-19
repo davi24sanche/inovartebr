@@ -3,7 +3,14 @@
     <div class="col-md-11">
       <h4 class="mb-3" style="text-align: center">Modificar Detalle</h4>
       <div class="container">
+
+   <ng-template #loading>
+      <img class="img-fluid rounded mx-auto d-block" src="/assets/imgenes/loading.gif" alt="Cargando..."
+        style="width: 300px;" />
+    </ng-template>
+    <ng-template [ngIf]="detalle||tiposList" [ngIfElse]="loading">
         <form [formGroup]="formUpdate" (ngSubmit)="submitForm()" novalidate>
+          <input type="hidden" formControlName="id" />
           <div class="row">
             <div class="col-md-12">
               <div class="form-group row">
@@ -142,6 +149,7 @@
             </div>
           </div>
         </form>
+    </ng-template>
       </div>
     </div>
   </div>

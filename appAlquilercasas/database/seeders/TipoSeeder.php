@@ -15,26 +15,26 @@ class TipoSeeder extends Seeder
     {
         //Categoria1
         $tipo = new \App\Models\Tipo();
-        $tipo->name = 'Mascotas';
-        $tipo->description = 'Se aceptan Mascotas de cualquier tamaño';
+        $tipo->name = 'Servicio tipo P';
+        $tipo->description = 'Servicio para productos';
         $tipo->save();
 
         //Categoria2
         $tipo = new \App\Models\Tipo();
-        $tipo->name = 'Parqueo ';
-        $tipo->description = 'Se cuenta con un parqueo privado para el vehiculo';
+        $tipo->name = 'Caracteristica';
+        $tipo->description = 'Caracteristicas generales que sirven para cualquier atributo';
         $tipo->save();
 
         //Categoria3
         $tipo = new \App\Models\Tipo();
-        $tipo->name = 'Parque Infantil';
-        $tipo->description = 'Se encuentra cerca de las casas un parque infantil';
+        $tipo->name = 'Servicio tipo R';
+        $tipo->description = 'Servicio para reservas';
         $tipo->save();
 
         //Categoria4
         $tipo = new \App\Models\Tipo();
-        $tipo->name = 'Seguridad';
-        $tipo->description = 'Cada casa cuenta con camaras de vigilancia para mayor seguridad de las personas';
+        $tipo->name = 'Adicional';
+        $tipo->description = 'Se usa para agregar detalles adicionales';
         $tipo->save();
 
 

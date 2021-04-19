@@ -52,7 +52,8 @@ class ProductoController extends Controller
     {
         //Validacion para los campos del producto
         $validar = Validator::make(
-            $request->all(),[
+            $request->all(),
+            [
                 'name' => 'required|min:4',
                 'description' => 'required|min:5',
                 'price' => 'required|numeric',
@@ -60,36 +61,35 @@ class ProductoController extends Controller
             ]
         );
 
-        if($validar-> fails()){
-            return response()->json($validar->messages(),422);
+        if ($validar->fails()) {
+            return response()->json($validar->messages(), 422);
         }
 
-        try{
+        try {
             //Instancia de Producto
             $prod = new Producto();
-            $prod->name =$request->input('name');
-            $prod->description =$request->input('description');
-            $prod ->price = $request->input('price');
-            $prod->state =$request->input('state');
+            $prod->name = $request->input('name');
+            $prod->description = $request->input('description');
+            $prod->price = $request->input('price');
+            $prod->state = $request->input('state');
 
             //Guardar Imagen
-            if($request->hasFile('image')){
-                $file=$request->file('image');
-                $nameImage=time()."foto.".$file->getClientOriginalExtension();
-                $imageUpload=Image::make($file->getRealPath());
-                $path='images/';
-                $imageUpload->save(public_path($path). $nameImage);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $naameImage = time() . "foto." . $file->getClientOriginalExtension();
+                $imageUpload = Image::make($file->getRealPath());
+                $path = 'images/';
+                $imageUpload->save(public_path($path) . $naameImage);
 
                 //Revisar los campos de la Tabla de Producto en la DB
                 //Se Asocia los campos de la tabla con las variables creadas para guardar la Imagen
-                $prod ->nameImage=$nameImage;
-                $prod->pathImage = url($path)."/".$nameImage;
-
+                $prod->naameImage = $naameImage;
+                $prod->pathImage = url($path) . "/" . $naameImage;
             }
 
 
             //Guardar el producto en la BD
-            if($prod->save()){
+            if ($prod->save()) {
 
                 //Asociar varios detalles
                 //Relacion muchos a muchos
@@ -105,7 +105,7 @@ class ProductoController extends Controller
 
 
                 //Solo se utiliza con la Imagen
-                $detalles= $request->input('detalle_id');
+                $detalles = $request->input('detalle_id');
 
                 if (!is_array($request->input('detalle_id'))) {
                     //Formato array relacion muchos a muchos
@@ -115,21 +115,17 @@ class ProductoController extends Controller
 
                 if (!is_null($request->input('detalle_id'))) {
                     //Agregar detalles
-                    $prod>detalles()->attach($detalles);
+                    $prod > detalles()->attach($detalles);
                 }
                 $response = 'Producto creado!';
                 return response()->json($response, 201);
-
-            }else{
-                $response=['msg' => 'Error durante la creación del producto'];
-                return response()->json($response,404);
+            } else {
+                $response = ['msg' => 'Error durante la creación del producto'];
+                return response()->json($response, 404);
             }
-
-
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json($e->getMessage(), 422);
         }
-
     }
 
     /**
@@ -184,29 +180,28 @@ class ProductoController extends Controller
 
         //Información de la Imagen
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
 
             //obtener archivo de imagen anterior
-            $productoImagen=public_path("images/{$prod->nameImage}");
-            if(File::exists($productoImagen)) {
+            $productoImagen = public_path("images/{$prod->naameImage}");
+            if (File::exists($productoImagen)) {
                 //Borra Imagen anterior
                 File::delete($productoImagen);
             }
             $file = $request->file('image');
-            $nameImage = time() . "foto." . $file->getClientOriginalExtension();
+            $naameImage = time() . "foto." . $file->getClientOriginalExtension();
             $imageUpload = Image::make($file->getRealPath());
             $path = 'images/';
-            $imageUpload->save(public_path($path) . $nameImage);
+            $imageUpload->save(public_path($path) . $naameImage);
 
             //Revisar los campos de la Tabla de Producto en la DB
             //Se Asocia los campos de la tabla con las variables creadas para guardar la Imagen
-            $prod->nameImage = $nameImage;
-            $prod->pathImage = url($path) . "/" . $nameImage;
-
+            $prod->naameImage = $naameImage;
+            $prod->pathImage = url($path) . "/" . $naameImage;
         }
 
         //Actualizar Producto
-        if($prod->update()){
+        if ($prod->update()) {
 
             //SIN IMAGEN
             /*$detalles = explode(',',$request->input('detalle_id'));
@@ -231,11 +226,10 @@ class ProductoController extends Controller
             }
 
             $response = 'Producto actualizado correctamente';
-            return response()->json($response,200);
+            return response()->json($response, 200);
         }
-        $response=['msg' => 'Error al momento de actualizar'];
-        return response()->json($response,404);
-
+        $response = ['msg' => 'Error al momento de actualizar'];
+        return response()->json($response, 404);
     }
 
     /**
@@ -244,7 +238,7 @@ class ProductoController extends Controller
      * @param  \App\Models\Producto  $producto
      * @return \Illuminate\Http\Response
      */
-    public function destroy (int $producto)
+    public function destroy(int $producto)
 
     {
         try {

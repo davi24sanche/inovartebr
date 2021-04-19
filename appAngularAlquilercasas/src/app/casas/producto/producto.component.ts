@@ -30,24 +30,9 @@ export class ProductoComponent implements OnInit {
   }
 
   modificar(idProducto) {
-    this.router.navigate(['/producto/update/' + idProducto], {
+    this.router.navigate(['/casas/producto/update/' + idProducto], {
       relativeTo: this.route,
     });
-  }
-
-  //elimina el detalle
-  eliminar(param) {
-    this.gService
-      .create('/casas/producto/' + param, param)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((data: any) => {
-        if (data == 1) {
-          alertify.success('Eliminado Correctamente');
-          this.listaProductos();
-        } else {
-          alertify.error('Ha ocurrido un error al eliminar');
-        }
-      });
   }
 
   listaProductos() {

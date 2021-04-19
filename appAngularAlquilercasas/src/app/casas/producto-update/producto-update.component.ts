@@ -55,15 +55,14 @@ export class ProductoUpdateComponent implements OnInit {
         name: [this.producto.name, [Validators.required]],
         description: [this.producto.description, [Validators.required]],
         state: [this.producto.state, [Validators.required]],
-
         price: [
-          this.producto.price,
+          parseFloat(this.producto.price),
           [Validators.required, Validators.pattern('[0-9]+')],
         ],
         image: [''],
       });
       // Vista previa imagen
-      this.imageURL = this.producto.pathImagen;
+      this.imageURL = this.producto.pathImage;
     }
   }
 
@@ -91,19 +90,18 @@ export class ProductoUpdateComponent implements OnInit {
       .update_formdata('producto', formData)
       .subscribe((respuesta: any) => {
         this.producto = respuesta;
-        this.router.navigate(['/producto/show'], {
+        this.router.navigate(['casas/producto'], {
           queryParams: { update: 'true' },
         });
       });
   }
 
-  
   onReset() {
     this.formUpdate.reset();
   }
 
   onBack() {
-    this.router.navigate(['/producto/show']);
+    this.router.navigate(['casas/producto']);
   }
 
   public errorHandling = (control: string, error: string) => {

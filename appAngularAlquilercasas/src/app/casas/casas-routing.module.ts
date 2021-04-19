@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'casas/detalle/update/:id', component: DetalleUpdateComponent },
   { path: 'casas/producto/show/:id', component: ProductoShowComponent },
   { path: 'casas/producto/create', component: ProductoCreateComponent },
-  {path:'casas/producto/update/:id',component:ProductoUpdateComponent},
+  { path: 'casas/producto/update/:id',component:ProductoUpdateComponent},
   { path: 'casas/reserva/create', component: ReservaCreateComponent },
 ];
 
