@@ -23,10 +23,13 @@ export class ProductoComponent implements OnInit {
     this.listaProductos();
   }
 
+
   crearProducto() {
+
     this.router.navigate(['/casas/producto/create'], {
       relativeTo: this.route,
     });
+
   }
 
   modificar(idProducto) {

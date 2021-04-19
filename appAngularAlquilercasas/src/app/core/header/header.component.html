@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="navbar-brand" href="#">Alquiler</a>
+          <a class="navbar-brand" routerLink="/casas/producto/index" routerLinkActive="active">Casas</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -22,6 +22,10 @@
             <a class="dropdown-item" routerLink="/casas/detalle" routerLinkActive="active">Detalles</a>
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/casas/reserva/index" routerLinkActive="active" class="nav-link"><i
+              class="fas fa-shopping-cart"></i> <span class="badge badge-light">{{qtyItems}}</span> </a>
+        </li>
 
         <li class="nav-item">
           <a class="nav-link" routerLink="/home/acercade" routerLinkActive="active">Acerca de</a>
@@ -30,19 +34,6 @@
       </ul>
 
       <ul class="nav navbar-nav ml-auto">
-       <!--  <li>
-          <span class="navbar-text">
-            Usuario
-            <span class="badge badge-light"> </span>
-          </span>
-        </li>
-        <li>
-          <a class="btn btn-primary"><i class="fas fa-user"></i>Ingresar</a>
-        </li>
-
-        <li>
-          <a class="btn btn-primary"><i class="fas fa-user-lock"></i> Cerrar Sesión</a>
-        </li> -->
 
         <li class="nav-item dropdown" ngbDropdown placement="bottom-right" display="dynamic">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"

@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/app/share/authentication.service';
 export class HeaderComponent implements OnInit {
 currentUser: any;
 isAutenticated: boolean;
+qtyItems = 0;
   constructor(
     private authService: AuthenticationService,
     private router: Router

@@ -1,0 +1,46 @@
+
+
+
+//<!-- FORMA CORRECTA PARA QUE MUESTRE LOS PRODUCTOS CON IMAGENES
+ FALTA MODIFICAR LA DB Y AGREGAR A LOS SEEDERS EL pathImagen Y nombreImagen COMO ATRIBUTOS
+ -->
+<div class="container-fluid" margen>
+  <div class="row my-2">
+    <div class="col-md-3 my-3" *ngFor="let item of datos">
+      <!-- Información de producto-->
+      <div class="card border-info mb-3">
+        <img src="{{item.pathImage}}" alt="Imagen {{item.naameImage}}" class="img-thumbnail" />
+        <div class="card-body">
+          <h4 class="card-title">{{item.name}}</h4>
+          <h3 class="card-text">{{item.price | currency:'USD'}}</h3>
+          <a class="btn btn-info" [routerLink]="['/producto/',item.id]" routerLinkActive="active">Ver más <i
+              class="fas fa-angle-double-right"></i></a>
+          <button class="btn btn-warning" (click)="agregarProducto(item.id)"><i class="fas fa-cart-plus"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- PRUEBA DE QUE SI MUESTRA LA VENTANA CON LO BASICO -->
+<div class="container-fluid" margen>
+  <div class="row my-2">
+      <!-- Información de Casas -->
+       <div class="card border-info mb-3">
+        <img src="" alt="Imagen " class="img-thumbnail" />
+        <div class="card-body">
+          <h4 class="card-title"></h4>
+          <h3 class="card-text"></h3>
+          <a class="btn btn-info" [routerLink]="" routerLinkActive="active">Ver más <i
+              class="fas fa-angle-double-right"></i></a>
+          <button class="btn btn-warning" ><i class="fas fa-cart-plus"></i></button>
+        </div>
+      </div>
+  </div>
+  </div>
+
+
